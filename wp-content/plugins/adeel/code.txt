@@ -1,0 +1,21 @@
+<pre>
+<?php
+
+$content ='  
+        href="https://localhost/President_of_Pakistan"
+        href="https://en.wikipedia.org/w/index.php?title=Abu_Al-Asar_Hafeez_Jalandhari&amp;action=edit&amp;section=4"
+        
+';
+preg_match_all('~(https?://.[^ "]+)"~', $content, $matches);
+foreach($matches[1] as $link) {
+    if(preg_match('~localhost~', $link) == 1) {
+        continue;
+    }
+    $link = preg_quote($link, "/");
+    $content = preg_replace('/' . $link . '/', "", $content);
+    
+}
+echo "done";
+//preg_match_all('~href="(.[^ "]+)"~', $content, $matches2);
+
+ 
